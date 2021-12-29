@@ -29,20 +29,18 @@ export const Comp: FC<CompProps> = ({ form, multiOpts, singleOpts }) => {
         ))}
       </Dropdown>
       <br />
-      {false && (
-        <Dropdown
-          name="s"
-          value={form.values.s}
-          onChange={form.handleChange}
-          getLabel={(key) => <h3>{getLabel(singleOpts, key)}</h3>}
-        >
-          {singleOpts.map(({ label, key }) => (
-            <DDOptionSimple value={key} key={key}>
-              {label}
-            </DDOptionSimple>
-          ))}
-        </Dropdown>
-      )}
+      <Dropdown
+        name="s"
+        value={form.values.s}
+        onChange={form.handleChange}
+        getLabel={(key) => <h3>{getLabel(singleOpts, key)}</h3>}
+      >
+        {singleOpts.map(({ label, key }) => (
+          <DDOptionSimple value={key} key={key}>
+            {label}
+          </DDOptionSimple>
+        ))}
+      </Dropdown>
     </div>
   )
 }

@@ -74,6 +74,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
               Array.from(selectElem.options).forEach((opt) =>
                 selectElem.removeChild(opt)
               )
+              // if (!selected && !SelectorSingleSelectionOption.toggleSelected)
               const optElem = createOptionElem(optionValue)
               selectElem.appendChild(optElem)
             }
