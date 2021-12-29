@@ -96,7 +96,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
     if (!selectElem) {
       return
     }
-    const currValuesSortedStr = JSON.stringify(ctx.selections.sort())
+    const currValuesSortedStr = JSON.stringify(ctx.selections.slice().sort())
 
     const optionValuesStr = JSON.stringify(
       Array.from(selectElem.options)
