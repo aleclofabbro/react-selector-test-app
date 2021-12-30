@@ -34,12 +34,9 @@ const DropdownComp: FC<DropdownProps> = ({ getLabel, children }) => {
   return (
     <div style={{ border: 'thin black solid', margin: '10px' }}>
       <span onClick={toggleOpen}>[{isOpen ? '-' : '+'}]</span>
+      {!isOpen &&
+        selections.map((val) => <span key={val}>{getLabel(val)}</span>)}
       <div style={isOpen ? {} : { display: 'none' }}>{children}</div>
-      <div>
-        {selections.map((val) => (
-          <span key={val}>{getLabel(val)}</span>
-        ))}
-      </div>
     </div>
   )
 }

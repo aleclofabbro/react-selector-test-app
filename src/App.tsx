@@ -4,7 +4,6 @@ import { useCallback, useReducer, useState } from "react";
 import "./styles.css";
 
 function randomOpts(length: number, toSelect: number) {
-<<<<<<< Updated upstream
   const opts: [string, boolean][] = [];
 
   while (opts.length < length) {
@@ -14,15 +13,6 @@ function randomOpts(length: number, toSelect: number) {
       opts.push([`${key}`, false]);
     }
   }
-=======
-  const opts = new Array(length)
-    .fill(null)
-    // .map((_, i) => [`${Math.ceil(Math.random() * 100)}`, false])
-    .map(() => [
-      Math.random().toString(36).substring(3, 6).toUpperCase(),
-      false,
-    ])
->>>>>>> Stashed changes
 
   while (toSelect > 0) {
     const optCandy = opts[Math.floor(Math.random() * opts.length)];
@@ -79,11 +69,7 @@ export default function App() {
     });
   }, [setFormValues]);
 
-<<<<<<< Updated upstream
   const [isOpen, toggleOpen] = useReducer((prev) => !prev, false);
-=======
-  const [isOpen, toggleOpen] = useReducer((prev) => !prev, true)
->>>>>>> Stashed changes
 
   return (
     <div className="App">
