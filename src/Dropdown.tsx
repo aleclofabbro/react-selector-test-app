@@ -1,10 +1,5 @@
 import { FC, ReactNode, useReducer } from 'react'
-import {
-  Selector,
-  SelectProps,
-  useSelections,
-  useSelectorOption,
-} from './Selector'
+import { Selector, SelectProps, useSelections, useSelectorOption } from './Selector'
 
 export type DDOpt = {
   value: string
@@ -15,11 +10,7 @@ export type DropdownProps = {
   getLabel(key: string): ReactNode
 }
 
-export const Dropdown: FC<SelectProps & DropdownProps> = ({
-  getLabel,
-  children,
-  ...props
-}) => {
+export const Dropdown: FC<SelectProps & DropdownProps> = ({ getLabel, children, ...props }) => {
   return (
     <Selector {...props}>
       <DropdownComp getLabel={getLabel}>{children}</DropdownComp>
@@ -29,13 +20,12 @@ export const Dropdown: FC<SelectProps & DropdownProps> = ({
 const DropdownComp: FC<DropdownProps> = ({ getLabel, children }) => {
   //const selectProps = { ...props, children: undefined };
   const selections = useSelections()
-  const [isOpen, toggleOpen] = useReducer((prev) => !prev, false)
+  const [isOpen, toggleOpen] = useReducer(prev => !prev, false)
 
   return (
     <div style={{ border: 'thin black solid', margin: '10px' }}>
       <span onClick={toggleOpen}>[{isOpen ? '-' : '+'}]</span>
-      {!isOpen &&
-        selections.map((val) => <span key={val}>{getLabel(val)}</span>)}
+      {!isOpen && selections.map(val => <span key={val}>{getLabel(val)}</span>)}
       <div style={isOpen ? {} : { display: 'none' }}>{children}</div>
     </div>
   )
@@ -45,10 +35,7 @@ export const DDOptionSimple: FC<{ value: string }> = ({ value, children }) => {
   //console.log({ selected, value });
   return (
     <>
-      <span
-        style={{ backgroundColor: selected ? 'lightgray' : '' }}
-        onClick={toggle}
-      >
+      <span style={{ backgroundColor: selected ? 'lightgray' : '' }} onClick={toggle}>
         {children}
       </span>
       <br />

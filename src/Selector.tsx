@@ -1,18 +1,7 @@
-import {
-  createContext,
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react'
+import { createContext, FC, useCallback, useContext, useEffect, useMemo, useRef } from 'react'
 
 export type SelectProps = Omit<
-  React.DetailedHTMLProps<
-    React.SelectHTMLAttributes<HTMLSelectElement>,
-    HTMLSelectElement
-  >,
+  React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
   'value' | 'multiple'
 > &
   (
@@ -31,8 +20,7 @@ export type SelectorCtxType = {
 }
 export const SelectorContext = createContext<SelectorCtxType>(null as any)
 
-export const useSelectorOption = (value: string) =>
-  useContext(SelectorContext).useSelectorOption(value)
+export const useSelectorOption = (value: string) => useContext(SelectorContext).useSelectorOption(value)
 
 export const useSelections = () => useContext(SelectorContext).selections
 
@@ -49,7 +37,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
       : []
     return {
       selections,
-      useSelectorOption: (optionValue) => {
+      useSelectorOption: optionValue => {
         //console.log("reg", opt);
         const selected = !!selections.includes(optionValue)
 
@@ -61,9 +49,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
           }
           if (multiple) {
             if (selected) {
-              const optionEl = Array.from(selectElem.options).find(
-                ({ value }) => value === optionValue
-              )
+              const optionEl = Array.from(selectElem.options).find(({ value }) => value === optionValue)
               optionEl && selectElem.removeChild(optionEl)
             } else {
               const optElem = createOptionElem(optionValue)
@@ -71,9 +57,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
             }
           } else {
             if (!selected) {
-              Array.from(selectElem.options).forEach((opt) =>
-                selectElem.removeChild(opt)
-              )
+              Array.from(selectElem.options).forEach(opt => selectElem.removeChild(opt))
               // if (!selected && !SelectorSingleSelectionOption.toggleSelected)
               const optElem = createOptionElem(optionValue)
               selectElem.appendChild(optElem)
@@ -102,7 +86,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
     const optionValuesStr = JSON.stringify(
       Array.from(selectElem.options)
         .map(({ value }) => value)
-        .sort()
+        .sort(),
     )
     if (currValuesSortedStr === optionValuesStr) {
       return
@@ -114,9 +98,7 @@ export const Selector: FC<SelectProps> = ({ children, ...selectProps }) => {
     })
 
     return () => {
-      Array.from(selectElem.options).forEach((opt) =>
-        selectElem.removeChild(opt)
-      )
+      Array.from(selectElem.options).forEach(opt => selectElem.removeChild(opt))
     }
   }, [ctx.selections])
 

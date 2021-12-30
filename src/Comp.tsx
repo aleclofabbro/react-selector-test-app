@@ -10,8 +10,7 @@ type CompProps = {
   form: SimplifiedFormik<{ m: string[]; s: string | undefined }>
 }
 
-const getLabel = (opts: Opt[], _key: string) =>
-  opts.find(({ key }) => _key === key)?.label ?? '-?-'
+const getLabel = (opts: Opt[], _key: string) => opts.find(({ key }) => _key === key)?.label ?? '-?-'
 export const Comp: FC<CompProps> = ({ form, multiOpts, singleOpts }) => {
   return (
     <div>
@@ -20,7 +19,7 @@ export const Comp: FC<CompProps> = ({ form, multiOpts, singleOpts }) => {
         multiple
         value={form.values.m}
         onChange={form.handleChange}
-        getLabel={(key) => <h2>{getLabel(multiOpts, key)}</h2>}
+        getLabel={key => <h2>{getLabel(multiOpts, key)}</h2>}
       >
         {multiOpts.map(({ label, key }) => (
           <DDOptionSimple value={key} key={key}>
@@ -33,7 +32,7 @@ export const Comp: FC<CompProps> = ({ form, multiOpts, singleOpts }) => {
         name="s"
         value={form.values.s}
         onChange={form.handleChange}
-        getLabel={(key) => <h3>{getLabel(singleOpts, key)}</h3>}
+        getLabel={key => <h3>{getLabel(singleOpts, key)}</h3>}
       >
         {singleOpts.map(({ label, key }) => (
           <DDOptionSimple value={key} key={key}>
