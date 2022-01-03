@@ -60,7 +60,7 @@ export default function App() {
     })
   }, [setFormValues])
 
-  const [isOpen, toggleOpen] = useReducer(prev => !prev, false)
+  const [isOpen, toggleOpen] = useReducer(prev => !prev, true)
 
   return (
     <div className="App">
@@ -83,6 +83,8 @@ export default function App() {
           form={form}
         />
       )}
+      {/** 
+
       <br />
       <br />
       <br />
@@ -95,6 +97,8 @@ export default function App() {
           </option>
         ))}
       </select>
+
+      */}
       <br />
       <br />
       <button onClick={form.submitForm}>sub</button>
